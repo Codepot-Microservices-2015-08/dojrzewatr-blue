@@ -2,6 +2,9 @@
     "blue": {
         "this": "pl/codepot/dojrzewatr-blue",
         "dependencies" : {
+            "butelkatr-blue": {
+                "path": "pl/codepot/butelkatr-blue"
+            }
         }
     }
 }
