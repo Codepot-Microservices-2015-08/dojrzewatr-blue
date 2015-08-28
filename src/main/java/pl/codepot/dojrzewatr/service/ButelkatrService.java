@@ -3,6 +3,8 @@ package pl.codepot.dojrzewatr.service;
 import com.nurkiewicz.asyncretry.RetryExecutor;
 import com.ofg.infrastructure.discovery.ServiceAlias;
 import com.ofg.infrastructure.web.resttemplate.fluent.ServiceRestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,10 @@ public class ButelkatrService {
     private final ServiceRestClient serviceRestClient;
     private final RetryExecutor retryExecutor;
 
+
+    private static final Logger logger = LoggerFactory.getLogger(ButelkatrService.class);
+
+
     @Autowired
     public ButelkatrService(ServiceRestClient serviceRestClient, RetryExecutor retryExecutor) {
         this.serviceRestClient = serviceRestClient;
@@ -20,6 +26,7 @@ public class ButelkatrService {
     }
 
     public HttpStatus bottle(int bottles) {
+        logger.info("Butelkatr asked to butelkate!");
         Wort wort = new Wort(bottles);
         return serviceRestClient.forService(new ServiceAlias("butelkatr"))
                 .retryUsing(retryExecutor)
