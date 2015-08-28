@@ -1,10 +1,13 @@
 {
-    "blue": {
-        "this": "pl/codepot/dojrzewatr-blue",
-        "dependencies" : {
-            "butelkatr": {
-                "path": "pl/codepot/butelkatr-blue"
-            }
-        }
+  "blue": {
+    "this": "pl/codepot/dojrzewatr-blue",
+    "dependencies": {
+      "butelkatr": {
+        "path": "pl/codepot/butelkatr-blue"
+      },
+      "prezentatr": {
+        "path": "pl/codepot/prezentatr-blue"
+      }
     }
+  }
 }
