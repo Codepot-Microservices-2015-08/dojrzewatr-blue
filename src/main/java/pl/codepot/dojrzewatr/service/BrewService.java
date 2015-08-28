@@ -23,7 +23,7 @@ public class BrewService {
     public void handleBrewRequest(BrewRequest request) {
         prezentatorService.sendFeedToPrezentator();
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(500L);
         } catch (InterruptedException e) {
             logger.info("slee fail", e);
         }
