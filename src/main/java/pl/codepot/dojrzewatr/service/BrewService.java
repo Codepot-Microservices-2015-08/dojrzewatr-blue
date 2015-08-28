@@ -1,23 +1,34 @@
 package pl.codepot.dojrzewatr.service;
 
-import com.nurkiewicz.asyncretry.RetryExecutor;
-import com.ofg.infrastructure.web.resttemplate.fluent.ServiceRestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import pl.codepot.dojrzewatr.brewing.model.BrewRequest;
 
-@Component
+@Service
 public class BrewService {
 
-    private final ServiceRestClient serviceRestClient;
-    private final RetryExecutor retryExecutor;
+    private static final Logger logger = LoggerFactory.getLogger(BrewService.class);
+
+    private ButelkatrService butelkatrService;
+    private PrezentatorService prezentatorService;
 
     @Autowired
-    public BrewService(ServiceRestClient serviceRestClient, RetryExecutor retryExecutor) {
-        this.serviceRestClient = serviceRestClient;
-        this.retryExecutor = retryExecutor;
+    public BrewService(ButelkatrService butelkatrService, PrezentatorService prezentatorService) {
+        this.butelkatrService = butelkatrService;
+        this.prezentatorService = prezentatorService;
     }
 
-
+    public void handleBrewRequest(BrewRequest request) {
+        prezentatorService.sendFeedToPrezentator();
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            logger.info("slee fail", e);
+        }
+        butelkatrService.bottle(9999);
+    }
 
 
 
