@@ -16,7 +16,7 @@ public class BrewController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void brew(@RequestBody BrewRequest brewRequest) {
-        logger.debug("Test hit blue dojrzewator");
+        logger.info("Test hit blue dojrzewator");
     }
 
 
